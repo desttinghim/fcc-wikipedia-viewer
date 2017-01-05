@@ -9,26 +9,41 @@ HxOverrides.iter = function(a) {
 };
 var Main = $hx_exports.Main = function() { };
 Main.main = function() {
-	Web.ajax({ url : "http://en.wikipedia.org/w/api.php", options : (function($this) {
+};
+Main.search = function() {
+	var searchBar = Web.getEl("search-bar");
+	var searchQuery = searchBar.value;
+	if(searchQuery == "") return;
+	var ajaxObj = { url : "https://en.wikipedia.org/w/api.php", options : (function($this) {
 		var $r;
 		var _g = new haxe_ds_StringMap();
 		if(__map_reserved.action != null) _g.setReserved("action","query"); else _g.h["action"] = "query";
 		if(__map_reserved.list != null) _g.setReserved("list","search"); else _g.h["list"] = "search";
 		if(__map_reserved.callback != null) _g.setReserved("callback","Main.callback"); else _g.h["callback"] = "Main.callback";
 		if(__map_reserved.format != null) _g.setReserved("format","json"); else _g.h["format"] = "json";
-		if(__map_reserved.srsearch != null) _g.setReserved("srsearch","albert"); else _g.h["srsearch"] = "albert";
+		if(__map_reserved.srsearch != null) _g.setReserved("srsearch",searchQuery); else _g.h["srsearch"] = searchQuery;
 		$r = _g;
 		return $r;
-	}(this))});
+	}(this))};
+	window.console.log(ajaxObj);
+	Web.ajax(ajaxObj);
 };
 Main.callback = function(response) {
 	window.console.log(response);
-	var search_results = Web.getEl("search-results");
-	search_results.innerHTML = "";
+	if(Object.prototype.hasOwnProperty.call(response,"error")) return;
 	var _g = 0;
 	while(_g < 10) {
 		var i = _g++;
-		search_results.innerHTML += "<p>" + response.query.search[i] + "</p>";
+		Main.results.push(response.query.search[i]);
+	}
+	var search_results = Web.getEl("search-results");
+	search_results.innerHTML = "";
+	var _g1 = 0;
+	var _g11 = Main.results;
+	while(_g1 < _g11.length) {
+		var result = _g11[_g1];
+		++_g1;
+		search_results.innerHTML += "<div>" + ("<h3>" + result.title + "</h3>") + ("<p>" + result.snippet + "</p>") + "</div>";
 	}
 };
 var Web = function() { };
@@ -84,5 +99,6 @@ haxe_ds_StringMap.prototype = {
 	}
 };
 var __map_reserved = {}
+Main.results = [];
 Main.main();
 })(typeof console != "undefined" ? console : {log:function(){}}, typeof window != "undefined" ? window : exports);
