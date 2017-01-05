@@ -1,0 +1,3 @@
+-cp dest.helpers.Web
+-main Main
+-js ../index.js

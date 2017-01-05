@@ -1,0 +1,44 @@
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.content {
+    margin-top: 50px;
+}
+
+.wikipedia-logo {
+    width: 80px;
+    float: left;
+}
+
+.wikipedia-logo-2 {
+    width: 80px;
+    float: right;
+}
+
+body {
+    font-family: serif;
+}
+
+#search-bar {
+    margin-top: 10px;
+}
+
+#search-btn {
+    margin-top: 10px;
+    /*margin-right: 10px;*/
+}
+
+#random {
+    margin-top: 10px;
+    margin-left: 10px;
+}
