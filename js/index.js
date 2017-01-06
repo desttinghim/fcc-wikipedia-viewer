@@ -25,11 +25,9 @@ Main.search = function() {
 		$r = _g;
 		return $r;
 	}(this))};
-	window.console.log(ajaxObj);
 	Web.ajax(ajaxObj);
 };
 Main.callback = function(response) {
-	window.console.log(response);
 	if(Object.prototype.hasOwnProperty.call(response,"error")) return;
 	Main.results = [];
 	var _g = 0;
@@ -38,16 +36,13 @@ Main.callback = function(response) {
 		Main.results.push(response.query.search[i]);
 	}
 	var search_results = Web.getEl("search-results");
-	while(search_results.hasChildNodes()) {
-		window.console.log("removing child...");
-		search_results.removeChild(search_results.lastChild);
-	}
+	while(search_results.hasChildNodes()) search_results.removeChild(search_results.lastChild);
 	var _g1 = 0;
 	var _g11 = Main.results;
 	while(_g1 < _g11.length) {
 		var result = _g11[_g1];
 		++_g1;
-		search_results.innerHTML += "<div>" + ("<h3>" + result.title + "</h3>") + ("<p>" + result.snippet + "</p>") + "</div>";
+		search_results.innerHTML += "<a href=\"https://en.wikipedia.org/wiki/" + result.title + "\"><div>" + ("<h3>" + result.title + "</h3>") + ("<p>" + result.snippet + "</p>") + "</div></a>";
 	}
 };
 var Web = function() { };
