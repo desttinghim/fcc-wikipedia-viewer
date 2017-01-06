@@ -42,7 +42,7 @@ Main.callback = function(response) {
 	while(_g1 < _g11.length) {
 		var result = _g11[_g1];
 		++_g1;
-		search_results.innerHTML += "<a href=\"https://en.wikipedia.org/wiki/" + result.title + "\"><div>" + ("<h3>" + result.title + "</h3>") + ("<p>" + result.snippet + "</p>") + "</div></a>";
+		search_results.innerHTML += "<div>" + ("<a href=\"https://en.wikipedia.org/wiki/" + result.title + "\"><h3>" + result.title + "</h3></a>") + ("<p>" + result.snippet + "</p>") + "</div>";
 	}
 };
 var Web = function() { };

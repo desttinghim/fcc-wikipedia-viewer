@@ -62,10 +62,10 @@ class Main {
         }
         for(result in results) {
             search_results.innerHTML
-            += '<a href="https://en.wikipedia.org/wiki/${result.title}"><div>'
-            + '<h3>${result.title}</h3>'
+            += '<div>'
+            + '<a href="https://en.wikipedia.org/wiki/${result.title}"><h3>${result.title}</h3></a>'
             + '<p>${result.snippet}</p>'
-            + '</div></a>';
+            + '</div>';
         }
     }
 }
