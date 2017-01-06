@@ -16,6 +16,10 @@
     display: block;
 }
 
+.searchmatch {
+    background-color: yellow;
+}
+
 .content {
     margin-top: 50px;
     display: block;

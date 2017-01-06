@@ -31,13 +31,17 @@ Main.search = function() {
 Main.callback = function(response) {
 	window.console.log(response);
 	if(Object.prototype.hasOwnProperty.call(response,"error")) return;
+	Main.results = [];
 	var _g = 0;
 	while(_g < 10) {
 		var i = _g++;
 		Main.results.push(response.query.search[i]);
 	}
 	var search_results = Web.getEl("search-results");
-	search_results.innerHTML = "";
+	while(search_results.hasChildNodes()) {
+		window.console.log("removing child...");
+		search_results.removeChild(search_results.lastChild);
+	}
 	var _g1 = 0;
 	var _g11 = Main.results;
 	while(_g1 < _g11.length) {

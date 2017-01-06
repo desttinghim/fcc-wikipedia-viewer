@@ -27,7 +27,7 @@ typedef WikipediaResponse = {
 class Main {
     public static var results:Array<SearchResult> = [];
     public static function main() {
-        // Web.getEl("search-btn").onclick=search;
+        
     }
 
     public static function search() {
@@ -53,12 +53,15 @@ class Main {
         if (Reflect.hasField(response, "error")) {
             return;
         }
+        results = [];
         for(i in 0...10) {
             results.push(response.query.search[i]);
         }
 
         var search_results = Web.getEl("search-results");
-        search_results.innerHTML = "";
+        while (search_results.hasChildNodes()) {
+            search_results.removeChild(search_results.lastChild);
+        }
         for(result in results) {
             search_results.innerHTML
             += '<div>'
